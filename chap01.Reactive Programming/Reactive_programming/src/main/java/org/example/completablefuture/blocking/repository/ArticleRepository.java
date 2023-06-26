@@ -1,6 +1,6 @@
 package org.example.completablefuture.blocking.repository;
 
-import org.example.completablefuture.blocking.common.ArticleEntity;
+import org.example.completablefuture.common.ArticleEntity;
 
 import java.util.List;
 import java.util.stream.Collectors;

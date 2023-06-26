@@ -1,4 +1,4 @@
-package org.example.completablefuture.blocking.common;
+package org.example.completablefuture.common;
 
 
 

@@ -1,9 +1,8 @@
 package org.example.completablefuture.blocking;
 
-import lombok.RequiredArgsConstructor;
-import org.example.completablefuture.blocking.common.ArticleEntity;
-import org.example.completablefuture.blocking.common.ImageEntity;
-import org.example.completablefuture.blocking.common.User;
+import org.example.completablefuture.common.ArticleEntity;
+import org.example.completablefuture.common.ImageEntity;
+import org.example.completablefuture.common.User;
 import org.example.completablefuture.blocking.repository.ArticleRepository;
 import org.example.completablefuture.blocking.repository.FollowRepository;
 import org.example.completablefuture.blocking.repository.ImageRepository;

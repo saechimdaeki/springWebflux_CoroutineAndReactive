@@ -1,6 +1,6 @@
 package org.example.completablefuture.blocking;
 
-import org.example.completablefuture.blocking.common.User;
+import org.example.completablefuture.common.User;
 import org.example.completablefuture.blocking.repository.ArticleRepository;
 import org.example.completablefuture.blocking.repository.FollowRepository;
 import org.example.completablefuture.blocking.repository.ImageRepository;

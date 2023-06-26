@@ -1,6 +1,6 @@
 package org.example.completablefuture.blocking.repository;
 
-import org.example.completablefuture.blocking.common.ImageEntity;
+import org.example.completablefuture.common.ImageEntity;
 
 import java.util.Map;
 import java.util.Optional;

@@ -1,7 +1,6 @@
 package org.example.completablefuture.blocking.repository;
 
-import lombok.extern.slf4j.Slf4j;
-import org.example.completablefuture.blocking.common.UserEntity;
+import org.example.completablefuture.common.UserEntity;
 
 import java.util.Map;
 import java.util.Optional;
