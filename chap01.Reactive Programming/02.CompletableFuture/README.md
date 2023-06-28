@@ -246,7 +246,3 @@ public class CompletableFuture<T> implements Future<T>, CompletionStage<T> {
 - 지속적으로 생성되는 데이터를 처리하기 어렵다
   - CompletableFuture에서 데이터를 반환하고 나면 다시 다른 값을 전달하기 어렵다
 
-
-
-
-

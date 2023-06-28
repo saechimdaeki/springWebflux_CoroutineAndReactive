@@ -1,0 +1,7 @@
+
+t
+java:S62042"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(££ÿıøÿÿÿÿ8˜¨¸1
+{
+java:S2142@"^Either re-interrupt this method or rethrow the "InterruptedException" that can be caught here.(”ı¾8˜¨¸1
+a
+java:S1128"DRemove this unused import 'java.util.concurrent.ExecutionException'.(¡£ØÍ8²Ÿ°¸1

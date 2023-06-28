@@ -1,0 +1,13 @@
+
+g	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8Æì½·1
+H
+java:S3010",Remove this assignment of "articleEntities".(ôçäh8Ô¼·1
+U	java:S106"9Replace this use of System.out or System.err by a logger.(‰ªÔì8¤‹Ä·1
+{
+java:S2142"^Either re-interrupt this method or rethrow the "InterruptedException" that can be caught here.(ä ¹€8´Ó½·1
+o
+java:S6204#"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(ª™¨¹8³‹åĞ1
+R
+java:S1128"0Remove this unused import 'lombok.SneakyThrows'.(¨³üÖûÿÿÿÿ8µ‹åĞ1
+U
+java:S1128"8Remove this unused import 'java.util.function.Supplier'.(†ïÿ‘8µ‹åĞ1
