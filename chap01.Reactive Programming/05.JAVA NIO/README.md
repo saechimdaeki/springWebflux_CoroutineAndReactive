@@ -156,3 +156,85 @@ public void close() throws IOException {}
 -  I/O요청이 발생할때마다 쓰레드를 새로 할당 하면, 쓰레드를 생성 및 관리하는 비용과  
     
     컨텍스트 스위칭으로 인한 cpu 자원 소모
+
+---
+
+## Java NIO
+
+### Java NIO
+- java New Input/Output (non-blockign X)
+- java 1.4에서 처음 도입
+- 파일과 네트워크에 데이터를 읽고 쓸 수 있는 API 제공
+- buffer 기반
+- non-blocking 지원
+- selector, channel 도입으로 높은 성능 보장
+
+### Java NIO vs Java IO
+
+||||
+|:--:|:--:|:--:|
+||Java NIO| Java IO|
+|데이터의 흐름|양방향|단방향|
+|종류|Channel|InputStream, OutputStream|
+|데이터의 단위|buffer|byte 혹은 character|
+|blocking 여부|non-blocking지원<br/>(blocking한 API도 존재)|blocking만 가능|
+|특이사항|Selector 지원||
+
+
+### Channel과 Buffer
+- 데이터를읽을때:적절한크기의 Buffer를 생성하고 Channel의 read() 메서드를 사용하여 데이터를 Buffer에 저장.
+- 데이터를쓸때:먼저Buffer에 데이터를 저장하고 Channel의 write() 메서드를 사용하여 목적지로 전달
+- clear()메서드로 초기화하여 다시 사용가능
+
+![image](../../image/chap01/channel%20and%20buffer.png)
+
+`Buffer 종류`
+- ByteBuffer: byte 단위로 데이터를 읽고 쓴다 
+- CharBuffer: char 단위
+- ShortBuffer: short 단위
+- IntBuffer: int 단위
+- LongBuffer: long 단위
+- FloatBuffer: float 단위
+- DoubleBuffer: double 단위
+
+### Buffer 위치 속성
+
+-  capacity: Buffer가 저장할 수 있는 데이터의 최대 크기. Buffer 생성시 결정되며 변경 불가
+- position: Buffer에서 현재 위치를 카리킨다.버퍼에서 데이터를 읽거나 쓸 때,해당위치부터 시작. 
+  
+  Buffer에 1Byte가 추가될 때마다 1 증가
+- limit: Buffer에서 데이터를 읽거나 쓸 수 있는 마지막 위치. limit 이후로 데이터를 읽거 나 쓰기 불가. 
+
+    최초 생성시 capacity와 동일
+- mark:현재 position 위치를 mark()로 지정 할 수 있고 reset() 호출 시 position을 mark로 이동
+- 0 <= mark <= position <= limit <= capacity
+
+`DirectByteBuffer`
+- native 메모리(off-heap)에 저장
+- 커널 메모리에서 복사를 하지 않으므로 데이터를 읽고 쓰는속도가빠르다
+
+- 비용이 많이 드는 system call을 사용하므로allocate, deallocate가 느리다
+  
+`HeapByteBuffer`
+- JVM heap 메모리에 저장. byte array를 랩핑 
+- 커널 메모리에서 복사가 일어나므로 데이터를 읽고 쓰는 속도가 느리다
+- (이 과정에서 임시로 Direct Buffer를 만들기때문에 성능 저하)
+- gc에서 관리가 되므로 allocate, deallocate가 빠르다
+
+### ByteBuffer 구분
+- DirectByteBuffer: allocateDirect() 함수로 생성 가능
+- HeapByteBuffer: allocate(), wrap() 함수로 생성 가능
+- isDirect()로 구분 가능
+
+```java
+var directByteBuffer = ByteBuffer.allocateDirect(1024); 
+assert directByteBuffer.isDirect();
+var heapByteBuffer = ByteBuffer.allocate(1024); 
+assert !heapByteBuffer.isDirect();
+var byteBufferByWrap = ByteBuffer.wrap("hello".getBytes()); 
+assert !byteBufferByWrap.isDirect();
+```
+
+![image](../../image/chap01/filechannelread.png)
+
+![image](../../image/chap01/filechannelwrite.png)
