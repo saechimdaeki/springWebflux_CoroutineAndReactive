@@ -238,3 +238,58 @@ assert !byteBufferByWrap.isDirect();
 ![image](../../image/chap01/filechannelread.png)
 
 ![image](../../image/chap01/filechannelwrite.png)
+
+
+## Java NIO를 non-blocking하게 쓰려면?
+
+### SelectableChannel
+- SocketChannel, ServerSocketChannel 모 두 AbstractSelectableChannel을 상속
+- AbstractSelectableChannel은 SelectableChannel을 상속
+
+![image](./../../image/chap01/SelectableChannel.png)
+
+- configureBlocking과 register 함수 제공
+- configureBlocking : serverSocketChannel의 accept, socketChannel의 connect등이 non-blocking으로 동작
+
+```java
+public abstract class SelectableChannel extends AbstractInterruptibleChannel
+implements Channel
+
+public abstract SelectableChannel configureBlocking(boolean block) throws IOException;
+public final SelectionKey register(Selector sel, int ops) throws ClosedChannelException { ... }
+}
+```
+
+### ServerSocketChannel - non-Blocking accept
+
+```java
+try (var serverChannel = ServerSocketChannel.open()) {
+    var address = new InetSocketAddress("localhost", 8080); 
+    serverChannel.bind(address); 
+    serverChannel.configureBlocking(false);
+    var clientSocket = serverChannel.accept();
+    assert clientSocket == null; 
+}
+```
+
+### SocketChannel - non-Blocking connect
+
+```java
+try (var socketChannel = SocketChannel.open()) {
+    var address = new InetSocketAddress("localhost", 8080); 
+    socketChannel.configureBlocking(false);
+    var connected = socketChannel.connect(address);
+    assert !connected;
+}
+```
+
+### FileChannel
+
+```java
+public abstract class FileChannel
+    extends AbstractInterruptibleChannel
+    implements SeekableByteChannel, GatheringByteChannel, ScatteringByteChannel
+{
+    //...
+}
+```
