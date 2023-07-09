@@ -1,3 +1,6 @@
 
 image/.DS_Store
 chap01.Reactive Programming/Reactive_programming/.idea/sonarlint/securityhotspotstore/index.pb
+.DS_Store
+*.pb
+*.pb
